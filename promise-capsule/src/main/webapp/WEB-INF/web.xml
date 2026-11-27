@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
+         version="6.0">
+  <display-name>promise-capsule</display-name>
+
+  <!-- JSP 파일 인코딩: include로 넣는 조각도 UTF-8로 읽게 한 곳에서 정한다 -->
+  <jsp-config>
+    <jsp-property-group>
+      <url-pattern>*.jsp</url-pattern>
+      <page-encoding>UTF-8</page-encoding>
+    </jsp-property-group>
+  </jsp-config>
+
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+
+  <!-- 시작 리스너: 설정 파일 읽기, 개봉 알림 메일 작업 -->
+  <listener>
+    <listener-class>listener.AppListener</listener-class>
+  </listener>
+
+  <!-- 세션 30분 -->
+  <session-config>
+    <session-timeout>30</session-timeout>
+    <cookie-config>
+      <http-only>true</http-only>
+    </cookie-config>
+    <tracking-mode>COOKIE</tracking-mode>
+  </session-config>
+
+  <!-- 오류 화면: 잘못된 번호(숫자가 아닌 id)는 400 -->
+  <error-page>
+    <exception-type>java.lang.NumberFormatException</exception-type>
+    <location>/WEB-INF/views/error/400.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>400</error-code>
+    <location>/WEB-INF/views/error/400.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/WEB-INF/views/error/403.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/WEB-INF/views/error/404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/WEB-INF/views/error/500.jsp</location>
+  </error-page>
+</web-app>

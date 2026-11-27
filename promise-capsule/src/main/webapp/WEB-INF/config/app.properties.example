@@ -1,0 +1,30 @@
+# 약속 캡슐 — 환경 설정 예시
+# 사용법: 이 파일을 같은 폴더에 app.properties 로 복사한 뒤 값을 채운다.
+#         app.properties 에는 비밀 값이 들어가므로 저장소에 올리지 않는다.
+# 규칙: 환경마다 다른 값만 여기 둔다. 업무 규칙 수치(사진 크기·글자 수·인원 등)는 코드 상수.
+#       mail.password 가 비어 있으면 메일 작업만 끄고 나머지는 정상 동작한다.
+
+# ----- DB (MySQL 8.0.33) -----
+db.url=jdbc:mysql://localhost:3306/promise_capsule?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+db.user=
+db.password=
+
+# ----- 사진 저장 폴더 (웹 루트 밖, 슬래시 / 로 적기) -----
+upload.dir=C:/promise-capsule/photos
+
+# ----- 서비스 주소 (메일 링크·로그인 뒤 복귀 주소 검사에 씀, 끝에 / 없이) -----
+app.baseUrl=http://localhost:8080/promise-capsule
+
+# ----- 봉인 뒤 최소 개봉 간격(분) -----
+# 1 은 로컬 확인·시연용 값이다. 실제 운영에서는 이 줄을 지우거나 1440(1일)으로 둔다.
+# 이 줄이 없으면 코드 기본값 1440(1일)을 쓴다.
+seal.minIntervalMinutes=1
+
+# ----- 개봉 알림 메일 (Gmail SMTP, STARTTLS) -----
+# mail.password 는 Google 계정 비밀번호가 아니라 "앱 비밀번호"(16자리)를 넣는다.
+# mail.password 를 비워 두면 메일 작업만 꺼진다.
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=587
+mail.user=
+mail.password=
+mail.from=
